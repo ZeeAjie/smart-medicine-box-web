@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from flask import Flask, render_template, redirect, url_for, flash, session, jsonify, request
@@ -26,7 +27,9 @@ class Base(DeclarativeBase):
 
 #  sqlite:///medbox.db
 
-app.config ['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://postgres.uspnsztvcuooxlzqfyro:FYPsmartmedbox#1@aws-0-eu-central-1.pooler.supabase.com:5432/postgres'
+app.config ['SQLALCHEMY_DATABASE_URI']= os.environ.get("DATABASE_URL")
+
+#app.config ['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://postgres.uspnsztvcuooxlzqfyro:FYPsmartmedbox#1@aws-0-eu-central-1.pooler.supabase.com:5432/postgres'
 
 app.config['PERMANENT_SESSION_LIFETIME']=timedelta(minutes=10)
 
