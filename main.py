@@ -29,8 +29,6 @@ class Base(DeclarativeBase):
 
 app.config ['SQLALCHEMY_DATABASE_URI']= os.environ.get("DATABASE_URL")
 
-#app.config ['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://postgres.uspnsztvcuooxlzqfyro:FYPsmartmedbox#1@aws-0-eu-central-1.pooler.supabase.com:5432/postgres'
-
 app.config['PERMANENT_SESSION_LIFETIME']=timedelta(minutes=10)
 
 db=SQLAlchemy(model_class=Base)
