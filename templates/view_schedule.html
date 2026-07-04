@@ -1,0 +1,16 @@
+{% extends "base.html "%}
+
+{%block content%}
+
+<h2>The Medication Schedule for Compartment {{number}}</h2>
+<ul>
+    <li>Label: {{schedule.label}}</li>
+    {%if schedule.description%}
+    <li>Description: {{schedule.description}}</li>
+    {%else%}
+    <li>No description</li>
+    {%endif%}
+    <li>Schedule time: {{schedule.schedule_time}}</li>
+</ul>
+
+{%endblock%}

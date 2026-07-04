@@ -1,0 +1,46 @@
+{%extends "base.html" %}
+
+
+{% block content %}
+<h2>Event logs</h2>
+    <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Logs
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Time Stamp</th>
+                                            <th>Event type</th>
+                                            <th>Compartment Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Time Stamp</th>
+                                            <th>Event type</th>
+                                            <th>Compartment Number</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {%for log in all_logs%}
+                                        <tr>
+                                            <td>{{loop.index}}</td>
+                                            <td data-sort="{{log.timestamp}}">{{log.timestamp.strftime('%d %b %Y, %H:%M')}}</td>
+                                            <td>{{log.event_type}}</td>
+                                            {%if log.compartment_no%}
+                                            <td>Compartment {{log.compartment_no}}</td>
+                                            {%else%}
+                                            <td>System</td>
+                                            {%endif%}
+                                        </tr>
+                                         {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+{% endblock %}

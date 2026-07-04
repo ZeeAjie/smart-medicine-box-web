@@ -1,0 +1,129 @@
+{%extends "base.html" %}
+                        {% block content %}
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Last sync...</li>
+                        </ol>
+
+                        {%if missed_dosage%}
+                            <div class="alert alert-danger shadow-sm mb-4" role="alert">
+                                <strong>Emergency alert: A missed dosage has been recorded today. Check the logs below</strong>
+                            </div>
+                        {%endif%}
+                        <div class="row">
+
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Compartment 1</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="{{url_for('view_schedule', number=1)}}">View schedule</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4 ">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Compartment 2</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="{{url_for('view_schedule', number=2)}}">View schedule</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4 ">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Compartment 3</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="{{url_for('view_schedule', number=3)}}">View schedule</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Daily Summary
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>SN</th>
+                                            <th>Time Stamp</th>
+                                            <th>Event type</th>
+                                            <th>Compartment Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for log in logs%}
+                                        <tr>
+                                            <td>{{loop.index}}</td>
+                                            <td data-sort="{{log.timestamp}}">{{log.timestamp.strftime('%d %b %Y %H:%M')}}</td>
+                                            <td>{{log.event_type}}</td>
+                                            {%if log.compartment_no%}
+                                            <td>Compartment {{log.compartment_no}}</td>
+                                            {%else%}
+                                            <td>System</td>
+                                            {%endif%}
+                                        </tr>
+                                        {%else%}
+                                        <tr><td colspan="4" class="text-center">No activity recorded for today</td></tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% endblock %}
+
+
+
+<!--<div class="card mb-4">-->
+<!--                            <div class="card-header">-->
+<!--                                <i class="fas fa-table me-1"></i>-->
+<!--                                DataTable Example-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <table id="datatablesSimple">-->
+<!--                                    <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th>Name</th>-->
+<!--                                            <th>Position</th>-->
+<!--                                            <th>Office</th>-->
+<!--                                            <th>Age</th>-->
+<!--                                            <th>Start date</th>-->
+<!--                                            <th>Salary</th>-->
+<!--                                        </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tfoot>-->
+<!--                                        <tr>-->
+<!--                                            <th>Name</th>-->
+<!--                                            <th>Position</th>-->
+<!--                                            <th>Office</th>-->
+<!--                                            <th>Age</th>-->
+<!--                                            <th>Start date</th>-->
+<!--                                            <th>Salary</th>-->
+<!--                                        </tr>-->
+<!--                                    </tfoot>-->
+<!--                                    <tbody>-->
+<!--                                        <tr>-->
+<!--                                            <td>Tiger Nixon</td>-->
+<!--                                            <td>System Architect</td>-->
+<!--                                            <td>Edinburgh</td>-->
+<!--                                            <td>61</td>-->
+<!--                                            <td>2011/04/25</td>-->
+<!--                                            <td>$320,800</td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <td>Garrett Winters</td>-->
+<!--                                            <td>Accountant</td>-->
+<!--                                            <td>Tokyo</td>-->
+<!--                                            <td>63</td>-->
+<!--                                            <td>2011/07/25</td>-->
+<!--                                            <td>$170,750</td>-->
+<!--                                        </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                            </div>-->
+<!--                        </div>-->

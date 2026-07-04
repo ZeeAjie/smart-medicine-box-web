@@ -1,0 +1,9 @@
+{%extends "base.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+
+{% block content %}
+<h2>Set Schedule</h2>
+    <div class="col-xl-6 col-md-6">
+    {{render_form(form, novalidate=True)}}
+    </div>
+{% endblock %}
