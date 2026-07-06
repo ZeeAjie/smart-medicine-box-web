@@ -219,7 +219,8 @@ def schedule():
 
     return jsonify({
         "global_pin":admin.backup_pin if admin else None,
-        "valid_tags":[t.uid for t in all_tag],
+        "patient_tags":[t.uid for t in all_tag if not t.is_master],
+        "caregiver_tags": [t.uid for t in all_tag if t.is_master],
         "schedules":schedule_list}
     )
 
