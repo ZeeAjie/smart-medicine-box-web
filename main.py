@@ -11,7 +11,7 @@ from forms import RegisterForm, LoginForm, TagRegistrationForm, ScheduleForm
 from flask_bootstrap import Bootstrap5
 
 app= Flask(__name__)
-app.config['SECRET_KEY'] = '@smart22medicine44box88#'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 bootstrap=Bootstrap5(app)
 
 login_manager=LoginManager()
@@ -245,4 +245,4 @@ def ping():
 
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)
